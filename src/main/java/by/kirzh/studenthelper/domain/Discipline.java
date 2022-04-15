@@ -4,19 +4,16 @@ package by.kirzh.studenthelper.domain;
 import javax.persistence.*;
 
 @Entity
-@Table
+@Table(name = "discipline")
 public class Discipline {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "discipline_id", insertable = false,updatable = false)
     private Long disciplineId;
 
     private String disciplineName;
     private String disciplineDescription;
-
-    @ManyToOne
-    @JoinColumn(name = "discipline_id")
-    private Educator educator;
 
     public Discipline() {
         //JPA
@@ -44,13 +41,5 @@ public class Discipline {
 
     public void setDisciplineDescription(String disciplineDescription) {
         this.disciplineDescription = disciplineDescription;
-    }
-
-    public Educator getEducator() {
-        return educator;
-    }
-
-    public void setEducator(Educator educator) {
-        this.educator = educator;
     }
 }

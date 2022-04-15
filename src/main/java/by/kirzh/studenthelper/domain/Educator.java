@@ -1,14 +1,14 @@
 package by.kirzh.studenthelper.domain;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
-@Table
+@Table(name = "educator")
 public class Educator {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "educator_id")
     private Long educatorId;
 
     private String firstName;
@@ -16,9 +16,6 @@ public class Educator {
     private String middleName;
 
     private String email;
-
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "educator")
-    private List<Discipline> disciplines;
 
     public Educator() {
         //JPA
@@ -64,11 +61,4 @@ public class Educator {
         this.email = email;
     }
 
-    public List<Discipline> getDisciplines() {
-        return disciplines;
-    }
-
-    public void setDisciplines(List<Discipline> disciplines) {
-        this.disciplines = disciplines;
-    }
 }

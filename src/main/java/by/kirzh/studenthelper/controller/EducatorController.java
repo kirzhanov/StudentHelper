@@ -3,10 +3,7 @@ package by.kirzh.studenthelper.controller;
 import by.kirzh.studenthelper.domain.Educator;
 import by.kirzh.studenthelper.repository.EducatorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,5 +26,12 @@ public class EducatorController {
     @GetMapping("{educatorId}")
     public Educator getEducator(@PathVariable("educatorId") Educator educator){
         return educatorRepository.getById(educator.getEducatorId());
+    }
+
+    @PostMapping
+    @SuppressWarnings("S4684")
+    //TODO: Replace entity to DTO
+    public Educator createEducators(@RequestBody Educator newEducator){
+        return educatorRepository.save(newEducator);
     }
 }
