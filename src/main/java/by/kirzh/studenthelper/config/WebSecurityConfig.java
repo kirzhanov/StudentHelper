@@ -1,5 +1,9 @@
 package by.kirzh.studenthelper.config;
 
+import by.kirzh.studenthelper.domain.User;
+import by.kirzh.studenthelper.repository.UserRepository;
+import org.springframework.boot.autoconfigure.security.oauth2.resource.PrincipalExtractor;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -18,5 +22,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         .anyRequest().authenticated())
                 .oauth2Login();
         //formatter: on
+    }
+
+    @Bean
+    public PrincipalExtractor principalExtractor(UserRepository userRepository) {
+        return map -> new User();
     }
 }

@@ -1,7 +1,7 @@
 package by.kirzh.studenthelper.controller;
 
-import by.kirzh.studenthelper.domain.News;
-import by.kirzh.studenthelper.repository.NewsRepository;
+import by.kirzh.studenthelper.dto.EducatorWithCoursesAndCommentsDto;
+import by.kirzh.studenthelper.service.StudentHelperService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,15 +11,15 @@ import java.util.List;
 @RestController
 public class MainPageController {
 
-    private final NewsRepository newsRepository;
+    private StudentHelperService service;
 
     @Autowired
-    public MainPageController(NewsRepository newsRepository) {
-        this.newsRepository = newsRepository;
+    public MainPageController(StudentHelperService service) {
+        this.service = service;
     }
 
     @GetMapping
-    public List<News> getMainPage() {
-        return newsRepository.findAll();
+    public List<EducatorWithCoursesAndCommentsDto> getMainPage() {
+        return service.getAllEducatorsWithCoursesAndComments();
     }
 }
